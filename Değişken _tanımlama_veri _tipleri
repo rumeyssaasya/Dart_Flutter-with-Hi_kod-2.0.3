@@ -1,0 +1,35 @@
+void main() {
+  int sayi =2;
+  String b ='merhaba';
+  double c=3.0;
+  bool d =true;
+  String char ='a';
+  
+  
+    print('a=$sayi b=$b c=$c d=$d char=$char');
+  
+  print('***************************');
+  
+  String camelCase='camelCase';
+  String snake_case='snake_case';
+  String PascalCase='PascalCase';
+  print(' camelCase=$camelCase | snake_case=$snake_case | PascalCase=$PascalCase');
+  
+  print("****************************");
+  
+  String name='Rümeysa';
+  String lastName ='ACİOĞLU';
+  bool isOfAge=true;
+  
+  print("$name $lastName $isOfAge");
+  
+  
+}
+/* ÇIKTI
+
+a=2 b=merhaba c=3 d=true char=a
+***************************
+ camelCase=camelCase | snake_case=snake_case | PascalCase=PascalCase
+****************************
+Rümeysa ACİOĞLU true
+*/
