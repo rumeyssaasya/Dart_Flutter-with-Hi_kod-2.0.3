@@ -1,0 +1,13 @@
+void main() {
+  print('carp(5,3) cevabı');
+  print(carp(5,3));
+}
+
+int carp(int x, int y) {
+  int multipleByTwo(int x) {
+    return 2 * x;
+  }
+
+  int a = x * multipleByTwo(y - 1);
+  return a;
+}
