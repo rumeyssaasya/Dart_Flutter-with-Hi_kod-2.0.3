@@ -1,0 +1,71 @@
+void main() {
+ 
+  print("4,76 ve 9,54 uzunlukları olan dikdörtgenin alanı: ");
+    print(calculateRectangleArea(4.76,9.54));
+  
+}
+
+double calculateRectangleArea(double short, double long){
+  return short*long;
+}
+************************************************************************************
+
+void main() {
+  print('carp(5,3) cevabı');
+  print(carp(5,3));
+}
+
+int carp(int x, int y) {
+  int multipleByTwo(int x) {
+    return 2 * x;
+  }
+
+  int a = x * multipleByTwo(y - 1);
+  return a;
+}
+
+***********************************************************************************
+
+void main() {
+ List<int> list=[1,2,3,4,5,6,7];
+  deleteListElement(list,3);
+  print('$list');
+  
+}
+
+void deleteListElement(List<dynamic> list,int number){
+  for(int i=0; i<list.length; i++){
+    if(list[i]==number){
+      list.remove(number); 
+    break;}}
+  
+}
+
+***********************************************************************************
+
+void main() {
+  var shape1=new Shape('Üçgen',3,3);
+  print('Shape1: ${shape1.name}, Kenar: ${shape1.kenar}, Köşe: ${shape1.kose}');
+  
+  var shape2 =new Shape('Kare',4,4);
+  print('Shape2: ${shape2.name}, Kenar: ${shape2.kenar}, Köşe: ${shape2.kose}');
+  
+  var shape3 =new Shape('dikdörtgen',4,4);
+  print('Shape3: ${shape3.name}, Kenar: ${shape3.kenar}, Köşe: ${shape3.kose}');
+  
+  var shape4 =new Shape('Altıgen',6,6);
+  print('Shape4: ${shape4.name}, Kenar: ${shape4.kenar}, Köşe: ${shape4.kose}');
+  
+  var shape5 =new Shape('Beşgen',5,5);
+  print('Shape5: ${shape5.name}, Kenar: ${shape5.kenar}, Köşe: ${shape5.kose}');
+}
+
+class Shape{
+  String name;
+  int kenar;
+  int kose;
+
+
+Shape(this.name, this.kenar,this.kose);
+
+}
