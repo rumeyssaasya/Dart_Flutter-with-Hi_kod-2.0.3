@@ -1,0 +1,74 @@
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(App(),
+  );
+}
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+//Butona tıklandığında setstate kullanmak içi bu şekilde State<App> kullanıyoruz
+
+class _AppState extends State<App> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+
+        debugShowCheckedModeBanner:false, // Debug yazısını kapatılması.
+      home: Scaffold(
+        backgroundColor: Color(0xffBDF5F2), // Scaffold için arka plan rengi ayarlanması.
+        appBar: AppBar( //Appbar oluşturulması
+          backgroundColor: Colors.indigo, //Appbar arka plan rengi ayarlanması.
+          title: Text //Appbar içindeki yazı ve yazı stilinin ayarlanması. 
+            ('Hi-Kod',style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold, color: Colors.white)),
+          centerTitle: true, //Yazının ortalanması
+          shadowColor: Color(0xffBDF5F2), 
+          leading: IconButton( //Sol tarafta menu ikonu oluşturulması.
+              onPressed: (){
+                //open menu
+              },
+              icon: Icon(Icons.menu), //ikonun şeklininin menu ikonu yapılması.
+              color:Color(0xffBDF5F2), //ikon rengi ayarlanması.
+              ),
+          actions: [ //Appbar sağ tarafa ikon eklenmesi.
+            IconButton(
+              onPressed: (){ // ikona basıldığında setState içindeki kodun çağrılması.
+                setState((){
+                  print('Butona Tıklandı'); //konsola yazdırma kullanıcı göremez
+                });
+
+              },
+              icon: Icon(Icons.person), // ikon şeklinin belirlenmesi
+              color:Color(0xffBDF5F2), // ikon renginin belirlenmesi
+            )
+
+            ,
+          ],
+        ),
+        body: Center( //body tam ortası için
+          child: Container( //container oluşturulması
+            height:MediaQuery.of(context).size.height*0.1, // yazının boyutuna göre yükseklik ve genişlik ayarlanması.
+            width: MediaQuery.of(context).size.width*0.6,
+            decoration: BoxDecoration( // container için renk şekil vb özellik ayarlanması.
+              color: Colors.indigo,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Row( //container içinde birden fazla yazı yazılması ve ortalanması.
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:[
+                Text('Hello World',
+                  style: TextStyle(fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xffBDF5F2)),
+            ),
+              ],
+            ),
+    ),
+    ),
+    ),
+    );
+  }
+}
+
