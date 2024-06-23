@@ -1,0 +1,189 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  MyApp({Key ?key }) : super(key: key);
+
+   @override
+   State<MyApp> createState() => _MyAppState();
+  }
+  class _MyAppState extends State<MyApp>{
+    String inputTextVal = '';
+    TextEditingController passController = TextEditingController();
+    String text='';
+    bool _isChecked=false;
+    bool _isSwitched=false;
+    bool _isSent=false;
+    double _slideValue=0;
+    var pass='';
+    String _selectGender='none';
+
+    @override
+    Widget build(BuildContext context){
+      bool s;
+       return MaterialApp(
+         debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              title: Text(' Personal Survey '),
+              backgroundColor: Color(0xffB1AFFF),
+            ),
+            body: SizedBox(
+              width: MediaQuery.of(context).size.width*1,
+              child: Column(
+                verticalDirection: VerticalDirection.down,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(padding: EdgeInsets.all(8.0),
+                  child: TextField(
+                    cursorColor: Color(0xffBBE9FF),
+                    onChanged: (text){
+                      setState(() {
+                        pass=text;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                      ),
+                      filled: true,
+                      fillColor: Color(0xffFFF6E9),
+                      hintText: 'Enter your name and lastname',
+                      labelText: 'Name Lastname',
+                      suffixIcon: Icon(Icons.person),
+                    ),
+                    controller: passController,
+                      onTap:(){ print('Tapped to text field.');},
+                    onEditingComplete: (){print('Text writing is done.');},
+                    //obscureText: true, pasword kullanılırken metni gizlemek için yani *** yapar
+                  ),
+
+                  ),
+                  Row(
+                    children: [
+
+                      Checkbox(value: _isChecked, onChanged: (_dal){
+                      setState(() {
+                        _isChecked=_dal!;
+                        if (_isChecked)
+                          print('Checkbox is checked.');
+
+                      });
+                      },
+                        activeColor: Colors.cyan,
+                        focusColor: Colors.black45,
+                      ),
+                      Text('Are you an adult ? if yes check'),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: SwitchListTile(
+                      value: _isSwitched,
+                      onChanged: (SwitchData) {
+                        setState(
+                              () {
+                            _isSwitched = SwitchData;
+                          },
+                        );
+                      },
+                      activeColor: Colors.white54,
+                      title: Text(
+                        'Are you smoking?',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      subtitle: Text(
+                        'if yes switch it and how many are you smoking per a day',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      tileColor: Color(0xffBBE9FF),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ),
+                  Visibility(
+                    visible: _isSwitched,
+                    child: Slider(
+                      value: _slideValue,
+                      activeColor: Colors.deepPurpleAccent,
+                      inactiveColor: Colors.blueGrey,
+                      divisions: 20,
+                      max: 100,
+                      min: 0,
+                      label: _slideValue.round().toString(),
+                      onChanged: (slider) {
+                        setState(() {
+                          _slideValue = slider;
+                        });
+                      },
+                    ),
+                  ),
+                  DropdownButton(
+                    value: _selectGender,
+                    onChanged: (_gender) {
+                      setState(() {
+                        _selectGender = _gender!;
+                      });
+                    },
+                    items: <DropdownMenuItem<String>>[
+                      DropdownMenuItem(
+                          child: Text("Please select your gender "), value: 'none'),
+                      DropdownMenuItem(child: Text("Girl"), value: 'Woman'),
+                      DropdownMenuItem(child: Text("Boy"), value: 'Man'),
+                    ],
+                  ),
+                  ElevatedButton(
+                      onPressed:(){
+                        setState(() {
+                          _isSent=true;
+                        });
+                        print('Survey sent');
+                      }, child: Text('Send Survey.'),
+
+                  ),
+                   SizedBox(
+                     height: 12,
+                   ),
+                   Divider(
+                     height: 18,
+                     color: Colors.deepPurple,
+                   ),
+                   Visibility(
+                     visible: _isSent,
+                       child:Padding(
+                     padding: const EdgeInsets.all(6.0),
+                     child: Container(
+                       width: MediaQuery.of(context).size.width * 0.6,
+                       height: MediaQuery.of(context).size.width * 0.3,
+                       decoration: BoxDecoration(
+                           color: Colors.deepPurpleAccent,
+                           borderRadius: BorderRadius.circular(20)),
+                       child: Column(
+                         children: [
+                           Text('Text value: $pass'),
+                           Text('CheckBox valuesi: $_isChecked'),
+                           Text('Switch  valuesi: $_isSwitched'),
+                           Text('Slider valuesi: $_slideValue'),
+                           Text('DropDownButton valuesi: $_selectGender')
+                         ],
+                       ),
+                     ),
+                   ) ),
+
+                   ],
+                 ),
+                ),
+                ),
+                );
+              }
+            }
+
